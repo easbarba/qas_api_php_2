@@ -57,11 +57,7 @@ class Api
 
         switch ($this->method) {
         case "GET":
-            if (isset($this->id)) {
-                echo $controller->show($this->id);
-            } else {
-                echo $controller->index();
-            }
+            echo isset($this->id) ? $controller->show($this->id) : $controller->index();
             break;
         case "POST":
             echo $controller->store($request);
@@ -76,7 +72,8 @@ class Api
             echo $controller->destroy($this->id);
             break;
         default:
-            http_response_code(404);
+            http_response_code(405);
+            header("Allow: GET, POST, PUT, PATCH, DELETE");
             break;
         }
     }
