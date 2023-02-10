@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Easbarba\QasApi\Controllers;
 
+use Easbarba\QasApi\Utils\Responses;
+
 /*
  * Qas is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,37 +25,31 @@ class ConfigsController implements ControllerInterface
 {
     public function index(): string
     {
-        http_response_code(200);
-        return json_encode(["message" => "GET", "action" => "index"]);
+        return Responses::json(200, ["message" => "GET", "action" => "index"]);
     }
 
     public function show(string $id): string
     {
-        http_response_code(200);
-        return json_encode(["message" => "GET", "action" => "show", "id" => $id]);
+        return Responses::json(200, ["message" => "GET", "action" => "show", "id" => $id]);
     }
 
     public function store(array $request): string
     {
-        http_response_code(201);
-        return json_encode(["message" => "POST", "action" => "store", "request" => $request]);
+        return Responses::json(201, ["message" => "POST", "action" => "store", "request" => $request]);
     }
 
     public function update(string $id, array $request): string
     {
-        http_response_code(200);
-        return json_encode(["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
+        return Responses::json(200, ["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
     }
 
     public function overwrite(string $id, array $request): string
     {
-        http_response_code(200);
-        return json_encode(["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
+        return Responses::json(200, ["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
     }
 
     public function destroy(string $id): string
     {
-        http_response_code(204);
-        return json_encode(["message" => "DELETE", "action" => "destroy", "id" => $id]);
+        return Responses::json(204, ["message" => "DELETE", "action" => "destroy", "id" => $id]);
     }
 }
