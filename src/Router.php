@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Easbarba\QasApi;
 
+use Easbarba\QasApi\Controllers\ControllerInterface;
+
 /*
  * Qas is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +24,6 @@ namespace Easbarba\QasApi;
 class Router
 {
     public function __construct(
-        private ConfigsController $controller = new ConfigsController(),
         private string $method = "",
         private string $path = "",
         private array $parts = [],
@@ -38,7 +39,7 @@ class Router
         $this->id = $this->parts[3] ?? null;
     }
 
-    public function route(): void
+    public function route(ControllerInterface $controller): void
     {
         if (strcmp($this->resource, "configs") !== 0) {
             echo json_encode(["message" => "There is no such a resource, exiting!"]);
@@ -57,22 +58,22 @@ class Router
         switch ($this->method) {
         case "GET":
             if (isset($this->id)) {
-                echo $this->controller->show($this->id);
+                echo $controller->show($this->id);
             } else {
-                echo $this->controller->index();
+                echo $controller->index();
             }
             break;
         case "POST":
-            echo $this->controller->store($request);
+            echo $controller->store($request);
             break;
         case "PUT":
-            echo $this->controller->update($this->id, $request);
+            echo $controller->update($this->id, $request);
             break;
         case "PATCH":
-            echo $this->controller->overwrite($this->id, $request);
+            echo $controller->overwrite($this->id, $request);
             break;
         case "DELETE":
-            echo $this->controller->destroy($this->id);
+            echo $controller->destroy($this->id);
             break;
         default:
             http_response_code(404);

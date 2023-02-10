@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi;
-
-use Easbarba\QasApi\Controllers\ConfigsController;
+namespace Easbarba\QasApi\Controllers;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -21,16 +19,12 @@ use Easbarba\QasApi\Controllers\ConfigsController;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-// LOAD
-require dirname(__DIR__) . "/vendor/autoload.php";
-
-// ERRORS
-// set_exception_handler("ErrorHandler::handleException");
-
-// HEADERS
-header('Content-Type: application/json; charset=utf-8');
-
-// ROUTE
-$router = new Router();
-$controller = new ConfigsController();
-$router->route($controller);
+interface ControllerInterface
+{
+    public function index(): string;
+    public function show(string $id): string;
+    public function store(array $request): string;
+    public function update(string $id, array $request): string;
+    public function overwrite(string $id, array $request): string;
+    public function destroy(string $id): string;
+}

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi;
+namespace Easbarba\QasApi\Controllers;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@ namespace Easbarba\QasApi;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class ConfigsController
+class ConfigsController implements ControllerInterface
 {
     public function index(): string
     {
