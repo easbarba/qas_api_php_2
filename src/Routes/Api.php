@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi;
+namespace Easbarba\QasApi\Routes;
 
 use Easbarba\QasApi\Controllers\ControllerInterface;
 
@@ -21,7 +21,7 @@ use Easbarba\QasApi\Controllers\ControllerInterface;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Router
+class Api
 {
     public function __construct(
         private string $method = "",

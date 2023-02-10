@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi;
-
-use Easbarba\QasApi\Controllers\ConfigsController;
-use Easbarba\QasApi\Routes\Api;
+namespace Easbarba\QasApi\Errors;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -22,16 +19,16 @@ use Easbarba\QasApi\Routes\Api;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-// INITIAL LOADING
-require dirname(__DIR__) . "/vendor/autoload.php";
-
-// ERRORS
-// set_exception_handler("ErrorHandler::handleException");
-
-// HEADERS
-header('Content-Type: application/json; charset=utf-8');
-
-// ROUTES AND HANDLERS
-$router = new Api();
-$controller = new ConfigsController();
-$router->route($controller);
+class ErrorHandler
+{
+    public static function handleException(Throwable $exception): void
+    {
+        echo json_encode(
+            [
+            "code" => $exception->getCode(),
+            "messge" => $exception->getMessage(),
+            "file" => $exception->getFile()
+            ]
+        );
+    }
+}
