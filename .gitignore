@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+*.log
+tmp/
+
+# ARTIFACTS
+/vendor/*
+/tools/*
+.php-cs-fixer.cache
+.phpunit.result.cache

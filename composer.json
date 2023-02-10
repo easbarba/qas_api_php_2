@@ -1,0 +1,31 @@
+{
+    "name": "easbarba/qas_api",
+    "description": "Qas - API",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "version": "0.1.0",
+    "bin": ["bin/qas"],
+    "autoload": {
+        "psr-4": {
+            "Easbarba\\QasApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+        "name": "easbarba",
+        "email": "easbarba@outlook.com"
+    }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "^3.13"
+    },
+    "scripts": {
+        "check-style": "PHP_CS_FIXER_IGNORE_ENV=true php-cs-fixer fix --diff --verbose --dry-run .",
+        "fix-style": "PHP_CS_FIXER_IGNORE_ENV=true php-cs-fixer fix ."
+    }
+}
