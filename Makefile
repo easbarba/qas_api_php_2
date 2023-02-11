@@ -30,3 +30,6 @@ pub:
 
 img:
 	podman build --file ./Dockerfile --tag ${USER}/${NAME}:$(shell cat .version)
+
+openapi:
+	vendor/bin/openapi src -o ops/openapi_$(shell cat .version).json

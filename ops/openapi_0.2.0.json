@@ -1,0 +1,35 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/data.json": {
+            "get": {
+                "operationId": "0941db23d6631aaa7bc81fde30628c08",
+                "responses": {
+                    "200": {
+                        "description": "Display all configurations"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "121c995164e35564a9928221c6f5c5c9",
+                "responses": {
+                    "201": {
+                        "description": "Add new configuration"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "d302bc363444b124e35b436be33b1799",
+                "responses": {
+                    "204": {
+                        "description": "The data"
+                    }
+                }
+            }
+        }
+    }
+}
