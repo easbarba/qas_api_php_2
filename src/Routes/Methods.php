@@ -21,8 +21,11 @@ use Easbarba\QasApi\Controllers\ControllerInterface;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Api
+class Methods
 {
+    /**
+     * @param array<int,mixed> $parts
+     */
     public function __construct(
         private string $method = "",
         private string $path = "",
@@ -39,7 +42,7 @@ class Api
         $this->id = $this->parts[3] ?? null;
     }
 
-    public function route(ControllerInterface $controller): void
+    public function dispatch(ControllerInterface $controller): void
     {
         if (strcmp($this->resource, "configs") !== 0) {
             echo json_encode(["message" => "There is no such a resource, exiting!"]);
@@ -57,24 +60,63 @@ class Api
 
         switch ($this->method) {
         case "GET":
-            echo isset($this->id) ? $controller->show($this->id) : $controller->index();
+            $this->get($controller);
             break;
         case "POST":
-            echo $controller->store($request);
+            $this->post($controller, $request);
             break;
         case "PUT":
-            echo $controller->update($this->id, $request);
+            $this->put($controller, $request);
             break;
         case "PATCH":
-            echo $controller->overwrite($this->id, $request);
+            $this->patch($controller, $request);
             break;
         case "DELETE":
-            echo $controller->destroy($this->id);
+            $this->delete($controller);
             break;
         default:
-            http_response_code(405);
-            header("Allow: GET, POST, PUT, PATCH, DELETE");
-            break;
+            $this->RespondMethodNotAllowed();
         }
+    }
+
+    // HTTP ACTIONS
+    private function get(ControllerInterface $controller): void
+    {
+        echo isset($this->id) ? $controller->show($this->id) : $controller->index();
+    }
+
+    /**
+     * @param array<string,string> $request
+     */
+    private function post(ControllerInterface $controller, array $request): void
+    {
+        echo $controller->store($request);
+    }
+
+    /**
+     * @param array<string,string> $request
+     */
+    private function patch(ControllerInterface $controller, array $request): void
+    {
+        echo $controller->overwrite($this->id, $request);
+    }
+
+    /**
+     * @param array<string,string> $request
+     */
+    private function put(ControllerInterface $controller, array $request): void
+    {
+        echo $controller->update($this->id, $request);
+    }
+
+    private function delete(ControllerInterface $controller): void
+    {
+        echo $controller->destroy($this->id);
+    }
+
+    private function RespondMethodNotAllowed(): void
+    {
+        http_response_code(405);
+        header("Allow: GET, POST, PUT, PATCH, DELETE");
     }
 }
