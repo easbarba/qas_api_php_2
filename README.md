@@ -4,14 +4,14 @@ Qas API built against PHP http library.
 
 ## Endpoints
 
-| Method | Pattern       | Code | Action                         |
-|--------|---------------|------|--------------------------------|
-| GET    | /configs      | 200  | Fetches all configurations.    |
-| GET    | /configs/bash | 200  | Fetch a single configuration.  |
-| POST   | /configs      | 201  | Creates a new configuration.   |
-| PUT    | /configs/ruby | 200  | Replaces a configuration.      |
-| PATCH  | /configs/php  | 200  | Updates project configuration. |
-| DELETE | /configs/java | 204  | Deletes a configuration.       |
+| Method | Pattern       | Code | Action                           |
+|--------|---------------|------|----------------------------------|
+| GET    | /configs      | 200  | Fetches all configurations.      |
+| GET    | /configs/bash | 200  | Fetch a single configuration.    |
+| POST   | /configs      | 201  | Creates a new configuration.     |
+| PUT    | /configs/ruby | 200  | Replaces a configuration.        |
+| PATCH  | /configs/php  | 200  | Partially updates configuration. |
+| DELETE | /configs/java | 204  | Deletes a configuration.         |
 
 ## Port
 
@@ -19,7 +19,13 @@ Default port is at `:5000/VERSION`
 
 ## Configurations
 
-`qas` looks for configuration files at `$XDG_CONFIGS/qas`:
+`qas` configuration files are arrays of JSON objects made up of:
+
+- name of the project, 
+- branch, optional(defaults to master), 
+- URI.
+
+All configuration files must be stored at `$XDG_CONFIGS/qas`:
 
 $XDG_CONFIG/qas/misc.json
 
@@ -45,7 +51,10 @@ $XDG_CONFIG/qas/misc.json
 
 ## API Response Output
 
-The final response of bundled configurations output will look like this:
+The final response of the bundled configurations structure is as follow:
+
+- "lang" tag and its name,
+- "projects" tag and its array of projects. 
 
 ```json
 [
