@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi\Models;
+namespace Easbarba\QasApi\Service;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -19,14 +19,9 @@ namespace Easbarba\QasApi\Models;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Config
+class ConfigsService
 {
-    /**
-     * @param array<int,Project> $projects
-     */
-    public function __construct(
-        public string $lang,
-        public array $projects
-    ) {
+    public function new()
+    {
     }
 }

@@ -4,14 +4,14 @@ Qas API built against PHP http library.
 
 ## Endpoints
 
-| Method | Pattern       | Code | Action                            |
-|--------|---------------|------|-----------------------------------|
-| GET    | /configs      | 200  | Fetches all configurations.       |
-| GET    | /configs/bash | 200  | Fetch a single configuration.     |
-| POST   | /configs      | 201  | Creates a new configuration.      |
-| PUT    | /configs/ruby | 200  | Overwrites a configuration.       |
-| PATCH  | /configs/php  | 200  | Appends project to configuration. |
-| DELETE | /configs/java | 204  | Deletes a configuration.          |
+| Method | Pattern       | Code | Action                         |
+|--------|---------------|------|--------------------------------|
+| GET    | /configs      | 200  | Fetches all configurations.    |
+| GET    | /configs/bash | 200  | Fetch a single configuration.  |
+| POST   | /configs      | 201  | Creates a new configuration.   |
+| PUT    | /configs/ruby | 200  | Replaces a configuration.      |
+| PATCH  | /configs/php  | 200  | Updates project configuration. |
+| DELETE | /configs/java | 204  | Deletes a configuration.       |
 
 ## Port
 

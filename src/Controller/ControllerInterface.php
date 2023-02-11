@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi\Controllers;
+namespace Easbarba\QasApi\Controller;
 
 /*
  * Qas is free software: you can redistribute it and/or modify

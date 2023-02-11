@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Easbarba\QasApi\Models;
 
-
 /*
  * Qas is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +19,7 @@ namespace Easbarba\QasApi\Models;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Proj
+class Project
 {
     public function __construct(
         public string $name,

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi\Controllers;
+namespace Easbarba\QasApi\Controller;
 
 use Easbarba\QasApi\Utils\Responses;
 

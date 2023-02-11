@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Easbarba\QasApi\Routes;
 
-use Easbarba\QasApi\Controllers\ControllerInterface;
+use Easbarba\QasApi\Controller\ControllerInterface;
+use Easbarba\QasApi\Models\Config;
+use Easbarba\QasApi\Models\Project;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -49,14 +51,8 @@ class Methods
             exit;
         }
 
-        $request = [
-        "lang"=> "meh",
-                     "projects"=> [
-                         "name"=> "httprouter",
-                         "branch"=> "master",
-                         "url"=> urlencode("https://github.com/julienschmidt/meeh")
-                     ]
-        ];
+        $project = new Project(name: "httprouter", url: "https://github.com/julienschmidt/httprouter");
+        $request = (array) new Config(lang: "misc", projects: [$project, $project]);
 
         switch ($this->method) {
         case "GET":

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Easbarba\QasApi;
 
-use Easbarba\QasApi\Controllers\ConfigsController;
+use Easbarba\QasApi\Controller\ConfigsController;
 use Easbarba\QasApi\Routes\Methods;
 
 /*
