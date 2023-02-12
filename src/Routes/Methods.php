@@ -78,7 +78,11 @@ class Methods
     // HTTP ACTIONS
     private function get(ControllerInterface $controller): void
     {
-        echo isset($this->id) ? $controller->show($this->id) : $controller->index();
+        if (isset($this->id)) {
+            echo $controller->show($this->id);
+        } else {
+            echo $controller->index();
+        }
     }
 
     /**

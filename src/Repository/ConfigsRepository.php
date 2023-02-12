@@ -27,6 +27,7 @@ class ConfigsRepository
 
     public function findById(string $id): array
     {
+        json_decode($config)
     }
 
     public function overwrite(array $request, string $id)
@@ -42,6 +43,10 @@ class ConfigsRepository
     }
 
     public function delete()
+    {
+    }
+
+    public function queryByTerm()
     {
     }
 }

@@ -24,9 +24,7 @@ class Config
     /**
      * @param array<int,Project> $projects
      */
-    public function __construct(
-        public string $lang,
-        public array $projects
-    ) {
+    public function __construct(public string $lang, public array $projects)
+    {
     }
 }

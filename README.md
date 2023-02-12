@@ -107,7 +107,8 @@ To load all system dependencies, just run `guix shell`
 
 ## TODO
 
-- config: branch defaults to master
+- project: branch defaults to master
+- core/configs: methods to return a config object instead of array; 
 
 ## LICENSE
 

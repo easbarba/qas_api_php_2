@@ -21,21 +21,56 @@ use Easbarba\QasApi\Utils\Responses;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
+/**
+ * @OA\Info(title="My First API", version="0.1")
+ */
 class ConfigsController implements ControllerInterface
 {
+
+    /**
+     * @OA\Get(
+     *     @OA\Response(
+     *         response="200",
+     *         description="Display all configurations"
+     *     )
+     * )
+     */
     public function index(): string
     {
         return Responses::json(200, ["message" => "GET", "action" => "index"]);
     }
 
+    /**
+     * @OA\Get(
+     *     @OA\Response(
+     *         response="200",
+     *         description="Display single configuration"
+     *     )
+     * )
+     */
     public function show(string $id): string
     {
-        return Responses::json(200, ["message" => "GET", "action" => "show", "id" => $id]);
+        $name = htmlspecialchars($_GET['name'], ENT_QUOTES, 'UTF-8') ?? 'World';
+        return Responses::json(statusCode: 200, content: ["message" => "GET", "action" => "show", "id" => $id, "name" => $name]);
     }
 
+
+    /**
+     * @OA\Post(
+     *     @OA\Response(
+     *         response="201",
+     *         description="Add new configuration"
+     *     )
+     * )
+     */
     public function store(array $request): string
     {
         return Responses::json(201, ["message" => "POST", "action" => "store", "request" => $request]);
+    }
+
+    public function search(string $term): string
+    {
+        return Responses::json(200, ["message" => "GET", "action" => "show", "term" => $term]);
     }
 
     public function update(string $id, array $request): string
@@ -48,6 +83,14 @@ class ConfigsController implements ControllerInterface
         return Responses::json(200, ["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
     }
 
+    /**
+     * @OA\Delete(
+     *     @OA\Response(
+     *         response="204",
+     *         description="The data"
+     *     )
+     * )
+     */
     public function destroy(string $id): string
     {
         return Responses::json(204, ["message" => "DELETE", "action" => "destroy", "id" => $id]);

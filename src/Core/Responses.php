@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi\Service;
+namespace Easbarba\QasApi\Utils;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -19,13 +19,14 @@ namespace Easbarba\QasApi\Service;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class ConfigsService
+class Responses
 {
-    public function new()
+    /**
+     * @param array<string,string> $response
+     */
+    public static function get(int $statusCode, array $content): string
     {
-    }
-
-    public function search()
-    {
+        http_response_code($statusCode);
+        return json_encode($content);
     }
 }

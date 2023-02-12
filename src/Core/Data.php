@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi\Utils;
+namespace Easbarba\QasApi\Core;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -19,14 +19,12 @@ namespace Easbarba\QasApi\Utils;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Responses
+class Data
 {
-    /**
-     * @param array<string,string> $response
-     */
-    public static function json(int $code, array $response): string
+    public function __construct(public string $home = '', public string $homeConfig = '', public string $homeProjects = '')
     {
-        http_response_code($code);
-        return json_encode($response);
+        $this->home = $_SERVER['HOME'];
+        $this->homeProjects = $this->home . DIRECTORY_SEPARATOR . "Projects";
+        $this->homeConfig = $this->home . DIRECTORY_SEPARATOR . ".config" . DIRECTORY_SEPARATOR . "qas";
     }
 }
