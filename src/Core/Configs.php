@@ -90,7 +90,7 @@ class Configs
 
         foreach ($allConfigs as $key => $value) {
             $current =  $parent . $value;
-            array_push($result, [new Config(lang: $key, projects: $this->parseSingle($current))]) ;
+            array_push($result, [new Config(lang: $key, projects: $this->parseSingle($current))]);
         }
 
         return $result;

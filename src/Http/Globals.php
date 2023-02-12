@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi\Utils;
+namespace Easbarba\QasApi\Http;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -19,14 +19,16 @@ namespace Easbarba\QasApi\Utils;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Responses
+class Globals
 {
-    /**
-     * @param array<string,string> $response
-     */
-    public static function get(int $statusCode, array $content): string
+    public array $server;
+    public string $requestMethod;
+    public string $requestUri;
+
+    public function __construct()
     {
-        http_response_code($statusCode);
-        return json_encode($content);
+        $this->server = $_SERVER;
+        $this->requestMethod = $this->server["REQUEST_METHOD"];
+        $this->requestUri = $this->server["REQUEST_URI"];
     }
 }

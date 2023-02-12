@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi\Routes;
+namespace Easbarba\QasApi\Http;
 
 use Easbarba\QasApi\Controller\ControllerInterface;
 use Easbarba\QasApi\Models\Config;
@@ -23,21 +23,22 @@ use Easbarba\QasApi\Models\Project;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-class Methods
+class Routes
 {
     /**
      * @param array<int,mixed> $parts
      */
     public function __construct(
+        private Globals $globals,
         private string $method = "",
         private string $path = "",
         private array $parts = [],
         private string $version = "",
         private string $resource = "",
-        private ?string $id  = ""
+        private ?string $id  = "",
     ) {
-        $this->method = $_SERVER["REQUEST_METHOD"];
-        $this->path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+        $this->method = $globals->requestMethod;
+        $this->path = parse_url($globals->requestUri, PHP_URL_PATH);
         $this->parts = explode("/", $this->path);
         $this->version = $this->parts[1];
         $this->resource = $this->parts[2];

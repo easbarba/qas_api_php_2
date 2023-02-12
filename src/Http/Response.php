@@ -2,11 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Easbarba\QasApi;
-
-use Easbarba\QasApi\Controller\ConfigsController;
-use Easbarba\QasApi\Http\Routes;
-use Easbarba\QasApi\Http\Globals;
+namespace Easbarba\QasApi\Http;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -23,17 +19,14 @@ use Easbarba\QasApi\Http\Globals;
  * along with Qas. If not, see <https://www.gnu.org/licenses/>.
  */
 
-// INITIAL LOADING
-require dirname(__DIR__) . "/vendor/autoload.php";
-
-// ERRORS
-// set_exception_handler("ErrorHandler::handleException");
-
-// HEADERS
-header('Content-Type: application/json; charset=utf-8');
-
-// // ROUTES AND HANDLERS
-$controller = new ConfigsController();
-$globals = new Globals();
-$router = new Routes($globals);
-$router->dispatch($controller);
+class Response
+{
+    /**
+     * @param array<string,string> $response
+     */
+    public static function get(int $statusCode, array $content): string
+    {
+        http_response_code($statusCode);
+        return json_encode($content);
+    }
+}

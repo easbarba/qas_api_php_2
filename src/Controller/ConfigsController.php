@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Easbarba\QasApi\Controller;
 
-use Easbarba\QasApi\Utils\Responses;
+use Easbarba\QasApi\Http\Response;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -26,10 +26,9 @@ use Easbarba\QasApi\Utils\Responses;
  */
 class ConfigsController implements ControllerInterface
 {
-
     /**
      * @OA\Get(
-     *     @OA\Response(
+     * @OA\Response(
      *         response="200",
      *         description="Display all configurations"
      *     )
@@ -37,12 +36,12 @@ class ConfigsController implements ControllerInterface
      */
     public function index(): string
     {
-        return Responses::json(200, ["message" => "GET", "action" => "index"]);
+        return Response::get(200, ["message" => "GET", "action" => "index"]);
     }
 
     /**
      * @OA\Get(
-     *     @OA\Response(
+     * @OA\Response(
      *         response="200",
      *         description="Display single configuration"
      *     )
@@ -51,13 +50,13 @@ class ConfigsController implements ControllerInterface
     public function show(string $id): string
     {
         $name = htmlspecialchars($_GET['name'], ENT_QUOTES, 'UTF-8') ?? 'World';
-        return Responses::json(statusCode: 200, content: ["message" => "GET", "action" => "show", "id" => $id, "name" => $name]);
+        return Response::get(statusCode: 200, content: ["message" => "GET", "action" => "show", "id" => $id, "name" => $name]);
     }
 
 
     /**
      * @OA\Post(
-     *     @OA\Response(
+     * @OA\Response(
      *         response="201",
      *         description="Add new configuration"
      *     )
@@ -65,27 +64,27 @@ class ConfigsController implements ControllerInterface
      */
     public function store(array $request): string
     {
-        return Responses::json(201, ["message" => "POST", "action" => "store", "request" => $request]);
+        return Response::get(201, ["message" => "POST", "action" => "store", "request" => $request]);
     }
 
     public function search(string $term): string
     {
-        return Responses::json(200, ["message" => "GET", "action" => "show", "term" => $term]);
+        return Response::get(200, ["message" => "GET", "action" => "show", "term" => $term]);
     }
 
     public function update(string $id, array $request): string
     {
-        return Responses::json(200, ["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
+        return Response::get(200, ["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
     }
 
     public function overwrite(string $id, array $request): string
     {
-        return Responses::json(200, ["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
+        return Response::get(200, ["message" => "PUT", "action" => "update", "id" => $id, "request" => $request]);
     }
 
     /**
      * @OA\Delete(
-     *     @OA\Response(
+     * @OA\Response(
      *         response="204",
      *         description="The data"
      *     )
@@ -93,6 +92,6 @@ class ConfigsController implements ControllerInterface
      */
     public function destroy(string $id): string
     {
-        return Responses::json(204, ["message" => "DELETE", "action" => "destroy", "id" => $id]);
+        return Response::get(204, ["message" => "DELETE", "action" => "destroy", "id" => $id]);
     }
 }
