@@ -15,8 +15,8 @@ lint:
 	phpcbf src
 	phpcs src
 
-tests:
-	 ./vendor/bin/phpunit
+test:
+	 ./vendor/bin/pest
 
 grab:
 	./bin/qas --grab
