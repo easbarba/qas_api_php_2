@@ -26,20 +26,20 @@ use Easbarba\QasApi\Models\Project;
 class Routes
 {
     /**
-     * @param array<int,mixed> $parts
+     * @param  array<int,mixed>  $parts
      */
     public function __construct(
         private Globals $globals,
-        private string $method = "",
-        private string $path = "",
+        private string $method = '',
+        private string $path = '',
         private array $parts = [],
-        private string $version = "",
-        private string $resource = "",
-        private ?string $id  = "",
+        private string $version = '',
+        private string $resource = '',
+        private ?string $id = '',
     ) {
         $this->method = $globals->requestMethod;
         $this->path = parse_url($globals->requestUri, PHP_URL_PATH);
-        $this->parts = explode("/", $this->path);
+        $this->parts = explode('/', $this->path);
         $this->version = $this->parts[1];
         $this->resource = $this->parts[2];
         $this->id = $this->parts[3] ?? null;
@@ -47,37 +47,37 @@ class Routes
 
     public function dispatch(ControllerInterface $controller): void
     {
-        if (strcmp($this->resource, "configs") !== 0) {
-            echo json_encode(["message" => "There is no such a resource, exiting!"]);
+        if (strcmp($this->resource, 'configs') !== 0) {
+            echo json_encode(['message' => 'There is no such a resource, exiting!']);
             exit;
         }
 
-        $project = new Project(name: "httprouter", url: "https://github.com/julienschmidt/httprouter");
-        $request = (array) new Config(lang: "misc", projects: [$project, $project]);
+        $project = new Project(name: 'httprouter', url: 'https://github.com/julienschmidt/httprouter');
+        $request = (array) new Config(lang: 'misc', projects: [$project, $project]);
 
         switch ($this->method) {
-        case "GET":
-            $this->get($controller);
-            break;
-        case "POST":
-            $this->post($controller, $request);
-            break;
-        case "PUT":
-            $this->put($controller, $request);
-            break;
-        case "PATCH":
-            $this->patch($controller, $request);
-            break;
-        case "DELETE":
-            $this->delete($controller);
-            break;
-        default:
-            $this->RespondMethodNotAllowed();
+            case 'GET':
+                $this->get($controller);
+                break;
+            case 'POST':
+                $this->post($controller, $request);
+                break;
+            case 'PUT':
+                $this->put($controller, $request);
+                break;
+            case 'PATCH':
+                $this->patch($controller, $request);
+                break;
+            case 'DELETE':
+                $this->delete($controller);
+                break;
+            default:
+                $this->RespondMethodNotAllowed();
         }
     }
 
     // HTTP ACTIONS
-    private function get(ControllerInterface $controller): void
+    private static function get(ControllerInterface $controller): void
     {
         if (isset($this->id)) {
             echo $controller->show($this->id);
@@ -87,7 +87,7 @@ class Routes
     }
 
     /**
-     * @param array<string,string> $request
+     * @param  array<string,string>  $request
      */
     private function post(ControllerInterface $controller, array $request): void
     {
@@ -95,7 +95,7 @@ class Routes
     }
 
     /**
-     * @param array<string,string> $request
+     * @param  array<string,string>  $request
      */
     private function patch(ControllerInterface $controller, array $request): void
     {
@@ -103,7 +103,7 @@ class Routes
     }
 
     /**
-     * @param array<string,string> $request
+     * @param  array<string,string>  $request
      */
     private function put(ControllerInterface $controller, array $request): void
     {
@@ -118,6 +118,6 @@ class Routes
     private function RespondMethodNotAllowed(): void
     {
         http_response_code(405);
-        header("Allow: GET, POST, PUT, PATCH, DELETE");
+        header('Allow: GET, POST, PUT, PATCH, DELETE');
     }
 }

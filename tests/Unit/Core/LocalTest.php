@@ -22,37 +22,36 @@ namespace Tests\Core;
 use Easbarba\QasApi\Core\Configs;
 
 beforeEach(function () {
-    $examplesFolder = realpath(dirname(__DIR__, 3) . "/docs/examples");
+    $examplesFolder = realpath(dirname(__DIR__, 3).'/docs/examples');
     $this->configs = new Configs($examplesFolder);
-    $this->anyConfig = $examplesFolder . DIRECTORY_SEPARATOR . "misc.json";
+    $this->anyConfig = $examplesFolder.DIRECTORY_SEPARATOR.'misc.json';
 });
 
 it('reads config', function () {
     $found = $this->configs->parseSingle($this->anyConfig)[0]->name;
 
-    $this->assertEquals("awesomewm", $found);
+    $this->assertEquals('awesomewm', $found);
 });
 
 it('finds configs pathnames', function () {
-    $expected = ['misc' => "misc.json", 'etc' => 'etc.json'];
+    $expected = ['misc' => 'misc.json', 'etc' => 'etc.json'];
     $found = $this->configs->filenames();
 
     $this->assertEquals($expected, $found);
 });
 
 it('no config found', function () {
-    $this->configs = new Configs("anydir/that/do/not/exist");
+    $this->configs = new Configs('anydir/that/do/not/exist');
     $all = $this->configs->filenames();
 
     $this->assertFalse($all);
 });
 
 it('single config', function () {
-    $parsed = $this->configs->query("misc")->projects[1];
+    $parsed = $this->configs->query('misc')->projects[1];
 
     $this->assertEquals('nuxt', $parsed->name);
 });
-
 
 it('random config', function () {
     $parsed = $this->configs->parseSingle($this->anyConfig)[2];

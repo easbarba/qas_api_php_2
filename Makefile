@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := tests
-.PHONY: tests fmt grab archive deps lint pub
+.PHONY: test fmt grab archive deps lint pub img openapi
 NAME := qas
 
 server:
@@ -9,7 +9,8 @@ deps:
 	composer install
 
 fmt:
-	PHP_CS_FIXER_IGNORE_ENV=true php-cs-fixer fix --diff --verbose .
+	./vendor/bin/pint
+	# PHP_CS_FIXER_IGNORE_ENV=true php-cs-fixer fix --diff --verbose .
 
 lint:
 	phpcbf src
@@ -32,4 +33,4 @@ img:
 	podman build --file ./Dockerfile --tag ${USER}/${NAME}:$(shell cat .version)
 
 openapi:
-	vendor/bin/openapi src -o ops/openapi_$(shell cat .version).json
+	./vendor/bin/openapi src -o ops/openapi_$(shell cat .version).json

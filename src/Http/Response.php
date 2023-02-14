@@ -22,11 +22,12 @@ namespace Easbarba\QasApi\Http;
 class Response
 {
     /**
-     * @param array<string,string> $response
+     * @param  array<string,string>  $response
      */
     public static function get(int $statusCode, array $content): string
     {
         http_response_code($statusCode);
+
         return json_encode($content);
     }
 }

@@ -22,13 +22,15 @@ namespace Easbarba\QasApi\Http;
 class Globals
 {
     public array $server;
+
     public string $requestMethod;
+
     public string $requestUri;
 
     public function __construct()
     {
         $this->server = $_SERVER;
-        $this->requestMethod = $this->server["REQUEST_METHOD"];
-        $this->requestUri = $this->server["REQUEST_URI"];
+        $this->requestMethod = $this->server['REQUEST_METHOD'];
+        $this->requestUri = $this->server['REQUEST_URI'];
     }
 }

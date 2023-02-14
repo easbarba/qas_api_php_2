@@ -27,26 +27,26 @@ class ConfigsRepository
 
     public function findById(string $id): array
     {
-        json_decode($config)
+        json_decode($config);
     }
 
-    public function overwrite(array $request, string $id)
+    public function overwrite(array $request, string $id): void
     {
     }
 
-    public function updatePartial(array $request, string $id)
+    public function updatePartial(array $request, string $id): void
     {
     }
 
-    public function save(array $request, string $id)
+    public function save(array $request, string $id): void
     {
     }
 
-    public function delete()
+    public function delete(): void
     {
     }
 
-    public function queryByTerm()
+    public function queryByTerm(): void
     {
     }
 }

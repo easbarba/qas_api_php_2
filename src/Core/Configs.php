@@ -31,7 +31,6 @@ class Configs
 
     /**
      * @param $filepath string
-     *
      * @return array<int,Project>
      */
     public function parseSingle(string $filepath): array
@@ -55,12 +54,12 @@ class Configs
     {
         $result = [];
 
-        if (!file_exists($this->configHome)) {
+        if (! file_exists($this->configHome)) {
             return false;
         }
 
         $files = scandir($this->configHome, SCANDIR_SORT_DESCENDING);
-        $checker = fn ($elm) => $elm !== ".." && $elm !== "." && $elm != 'README.md' && file_exists($this->configHome . "/" . $elm) && !(filesize($this->configHome . "/" . $elm) == 0);
+        $checker = fn ($elm) => $elm !== '..' && $elm !== '.' && $elm != 'README.md' && file_exists($this->configHome.'/'.$elm) && ! (filesize($this->configHome.'/'.$elm) == 0);
         $filesFiltered = array_filter($files, $checker);
 
         foreach ($filesFiltered as $file) {
@@ -72,11 +71,11 @@ class Configs
 
     public function query(string $id): Config
     {
-        $parent = $this->configHome . DIRECTORY_SEPARATOR;
+        $parent = $this->configHome.DIRECTORY_SEPARATOR;
         $allConfigs = $this->filenames();
         $result = [];
 
-        return $result = new Config(lang: $id, projects: $this->parseSingle($parent . $allConfigs[$id]));
+        return $result = new Config(lang: $id, projects: $this->parseSingle($parent.$allConfigs[$id]));
     }
 
     /**
@@ -86,10 +85,10 @@ class Configs
     {
         $allConfigs = $this->filenames();
         $result = [];
-        $parent = $this->configHome . DIRECTORY_SEPARATOR;
+        $parent = $this->configHome.DIRECTORY_SEPARATOR;
 
         foreach ($allConfigs as $key => $value) {
-            $current =  $parent . $value;
+            $current = $parent.$value;
             array_push($result, [new Config(lang: $key, projects: $this->parseSingle($current))]);
         }
 

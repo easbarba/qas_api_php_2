@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Easbarba\QasApi;
 
 use Easbarba\QasApi\Controller\ConfigsController;
-use Easbarba\QasApi\Http\Routes;
 use Easbarba\QasApi\Http\Globals;
+use Easbarba\QasApi\Http\Routes;
 
 /*
  * Qas is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ use Easbarba\QasApi\Http\Globals;
  */
 
 // INITIAL LOADING
-require dirname(__DIR__) . "/vendor/autoload.php";
+require dirname(__DIR__).'/vendor/autoload.php';
 
 // ERRORS
 // set_exception_handler("ErrorHandler::handleException");

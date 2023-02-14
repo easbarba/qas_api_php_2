@@ -24,7 +24,7 @@ class Project
     public function __construct(
         public string $name,
         public string $url,
-        public string $branch = "master" // optional
+        public string $branch = 'master' // optional
     ) {
     }
 }

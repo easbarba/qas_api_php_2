@@ -24,7 +24,7 @@ class Data
     public function __construct(public string $home = '', public string $homeConfig = '', public string $homeProjects = '')
     {
         $this->home = $_SERVER['HOME'];
-        $this->homeProjects = $this->home . DIRECTORY_SEPARATOR . "Projects";
-        $this->homeConfig = $this->home . DIRECTORY_SEPARATOR . ".config" . DIRECTORY_SEPARATOR . "qas";
+        $this->homeProjects = $this->home.DIRECTORY_SEPARATOR.'Projects';
+        $this->homeConfig = $this->home.DIRECTORY_SEPARATOR.'.config'.DIRECTORY_SEPARATOR.'qas';
     }
 }

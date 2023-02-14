@@ -22,9 +22,14 @@ namespace Easbarba\QasApi\Controller;
 interface ControllerInterface
 {
     public function index(): string;
+
     public function show(string $id): string;
+
     public function store(array $request): string;
+
     public function update(string $id, array $request): string;
+
     public function overwrite(string $id, array $request): string;
+
     public function destroy(string $id): string;
 }

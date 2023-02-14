@@ -22,7 +22,7 @@ namespace Easbarba\QasApi\Models;
 class Config
 {
     /**
-     * @param array<int,Project> $projects
+     * @param  array<int,Project>  $projects
      */
     public function __construct(public string $lang, public array $projects)
     {
